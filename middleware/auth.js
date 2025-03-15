@@ -1,13 +1,13 @@
 const jwt = require('jsonwebtoken');
-const User = require('../models/User'); // Add this import
+const User = require('../models/User'); 
 
 const auth = async (req, res, next) => {
   try {
     const token = req.header('Authorization').replace('Bearer ', '');
-    console.log('Token:', token); // Log the token
+    console.log('Token:', token); 
 
     const decoded = jwt.verify(token, process.env.JWT_ACCESS_SECRET);
-    console.log('Decoded Token:', decoded); // Log decoded token
+    console.log('Decoded Token:', decoded); 
 
     const user = await User.findOne({
       _id: decoded.userId,
